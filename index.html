@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anika Mishra — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F8FB;
+    --panel: #FFFFFF;
+    --ink: #151B2C;
+    --ink-soft: #4A5268;
+    --muted: #8A90A3;
+    --line: #E3E6EE;
+    --accent: #5B5FEF;
+    --accent-soft: #EEEEFD;
+    --accent2: #0F9D74;
+    --accent2-soft: #E6F7F1;
+    --radius: 14px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    max-width: 1180px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--line);
+  }
+
+  .sidebar .name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .sidebar .title {
+    margin-top: 8px;
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+  }
+
+  .sidebar .blurb {
+    margin-top: 20px;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .contact-list {
+    margin-top: 28px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .contact-list li {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .contact-list a { color: var(--ink-soft); }
+  .contact-list a:hover { color: var(--accent); }
+
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent2);
+    flex-shrink: 0;
+  }
+
+  nav.section-nav {
+    margin-top: auto;
+    padding-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav.section-nav a {
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.15s ease;
+  }
+
+  nav.section-nav a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .print-btn {
+    margin-top: 24px;
+    align-self: flex-start;
+    background: var(--ink);
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+
+  .print-btn:hover { background: var(--accent); }
+
+  main { padding: 64px 56px 100px; }
+  section { margin-bottom: 64px; scroll-margin-top: 40px; }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.6rem;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+  }
+
+  p.lead {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+
+  /* ---- Experience timeline ---- */
+  .timeline { position: relative; padding-left: 28px; }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--line) 90%);
+  }
+
+  .role { position: relative; padding-bottom: 36px; }
+  .role:last-child { padding-bottom: 0; }
+
+  .role::before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  .role-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+  }
+
+  .role-title { font-weight: 600; font-size: 1.05rem; }
+  .role-org { color: var(--accent); font-weight: 600; }
+
+  .role-dates {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .role-desc {
+    margin-top: 8px;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    max-width: 64ch;
+  }
+
+  .role-desc ul {
+    margin-top: 8px;
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  /* ---- Skills ---- */
+  .tag-group { margin-bottom: 18px; }
+
+  .tag-group h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .tag {
+    background: var(--accent2-soft);
+    color: var(--accent2);
+    border: 1px solid transparent;
+    padding: 6px 13px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  /* ---- Education ---- */
+  .edu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    padding: 18px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .edu-item:last-child { border-bottom: 1px solid var(--line); }
+  .edu-school { font-weight: 600; }
+  .edu-detail { color: var(--ink-soft); font-size: 0.9rem; }
+  .edu-perf { color: var(--accent2); font-size: 0.85rem; font-weight: 600; margin-top: 2px; }
+  .edu-dates {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  /* ---- Activities ---- */
+  .activity-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .activity-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .activity-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .activity-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .activity-card .role-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  footer {
+    padding: 32px 56px 56px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar {
+      position: relative;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--line);
+      padding: 36px 24px;
+    }
+    nav.section-nav { flex-direction: row; flex-wrap: wrap; margin-top: 24px; padding-top: 0; }
+    main { padding: 40px 24px 80px; }
+    .activity-grid { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    body { background: #fff; }
+    .sidebar { position: relative; height: auto; }
+    .print-btn, nav.section-nav { display: none; }
+    .layout { grid-template-columns: 260px 1fr; }
+    section { margin-bottom: 32px; }
+    .activity-card:hover { transform: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div>
+      <div class="name">Anika Mishra</div>
+      <div class="title">B.A. (Hons.) Psychology Student</div>
+      <p class="blurb">
+        Second-year Psychology student at Indraprastha College for Women,
+        University of Delhi, passionate about understanding mental processes
+        and human behaviour. Seeking opportunities to gain practical
+        experience, strengthen research skills, and broaden my perspective
+        on the applications of psychology.
+      </p>
+    </div>
+
+    <ul class="contact-list">
+      <li><span class="dot"></span><a href="mailto:anika.mishra2006@gmail.com">anika.mishra2006@gmail.com</a></li>
+      <li><span class="dot"></span><a href="tel:+919667846273">+91 96678 46273</a></li>
+      <li><span class="dot"></span>Gurugram, Haryana, India</li>
+    </ul>
+
+    <nav class="section-nav" aria-label="Section navigation">
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#activities">Activities</a>
+    </nav>
+
+    <button class="print-btn" onclick="window.print()">Download / Print PDF</button>
+  </aside>
+
+  <main>
+
+    <!-- ---------- EXPERIENCE ---------- -->
+    <section id="experience">
+      <div class="eyebrow">Experience</div>
+      <h2>Internships</h2>
+
+      <div class="timeline">
+
+        <div class="role">
+          <div class="role-head">
+            <div class="role-title">Forensic Psychology Intern &middot; <span class="role-org">The Psych Perception and Adiika Wellness</span></div>
+            <div class="role-dates">Jan 2026 — Feb 2026</div>
+          </div>
+          <div class="role-desc">
+            <ul>
+              <li>Studied Competency to Stand Trial and Criminal Responsibility through case studies.</li>
+              <li>Participated in mock trial practices.</li>
+              <li>Practiced forensic report writing.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="role">
+          <div class="role-head">
+            <div class="role-title">Psychology Intern — Psychology for School Students &middot; <span class="role-org">Dept. of Mental Health &amp; Behavioural Sciences, Fortis Healthcare Limited</span></div>
+            <div class="role-dates">June 2023</div>
+          </div>
+          <div class="role-desc">
+            <ul>
+              <li>Learned the basics of psychology through online lectures.</li>
+              <li>Learned about anxiety disorders.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ---------- SKILLS ---------- -->
+    <section id="skills">
+      <div class="eyebrow">Skills</div>
+      <h2>What I work with</h2>
+
+      <div class="tag-group">
+        <h3>Core Skills</h3>
+        <div class="tags">
+          <span class="tag">Psychological Assessment Basics</span>
+          <span class="tag">Case History Taking</span>
+          <span class="tag">Mental Status Examination (MSE)</span>
+          <span class="tag">Literature Review</span>
+          <span class="tag">Report Writing</span>
+          <span class="tag">Communication &amp; Interpersonal Skills</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- EDUCATION ---------- -->
+    <section id="education">
+      <div class="eyebrow">Education</div>
+      <h2>Academic background</h2>
+
+      <div class="edu-item">
+        <div>
+          <div class="edu-school">Indraprastha College for Women, University of Delhi</div>
+          <div class="edu-detail">B.A. (Hons.) Psychology — Pursuing</div>
+          <div class="edu-perf">7.95 CGPA (till 3rd semester)</div>
+        </div>
+        <div class="edu-dates">In progress</div>
+      </div>
+
+      <div class="edu-item">
+        <div>
+          <div class="edu-school">Amity International School, Gurugram</div>
+          <div class="edu-detail">AISSCE (Humanities)</div>
+          <div class="edu-perf">95% [475/500]</div>
+        </div>
+        <div class="edu-dates">2024</div>
+      </div>
+
+      <div class="edu-item">
+        <div>
+          <div class="edu-school">Amity International School, Gurugram</div>
+          <div class="edu-detail">AISSE</div>
+          <div class="edu-perf">87.4% [437/500]</div>
+        </div>
+        <div class="edu-dates">2022</div>
+      </div>
+    </section>
+
+    <!-- ---------- ACTIVITIES ---------- -->
+    <section id="activities">
+      <div class="eyebrow">Co-Curricular</div>
+      <h2>Activities</h2>
+
+      <div class="activity-grid">
+        <div class="activity-card">
+          <div class="role-label">Beatboxer</div>
+          <h3>Western Music Society, IPCW</h3>
+        </div>
+        <div class="activity-card">
+          <div class="role-label">Volunteer</div>
+          <h3>Photovoice Exhibition, IPCW (2026)</h3>
+        </div>
+        <div class="activity-card">
+          <div class="role-label">Attendee</div>
+          <h3>Global AI Summit (2026)</h3>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  &copy; <span id="year"></span> Anika Mishra.
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
